@@ -1,0 +1,1 @@
+# oci_vcn_resolvers
