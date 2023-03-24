@@ -17,3 +17,4 @@ vcnresolverslistcur=$(cat vcnresolverslist.log)
 for resolver in $vcnresolverslistcur; do oci dns resolver get --resolver-id $resolver >> vcnresolvers.log ; done
 
 cat vcnresolvers.log | jq '.[] | ."display-name", .id, .endpoints, .rules' >> vcnresolvers-short.log
+
