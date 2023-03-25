@@ -18,4 +18,5 @@ for resolver in $vcnresolverslistcur; do oci dns resolver get --resolver-id $res
 
 cat vcnresolvers.log | jq '.[] | ."display-name", .id, .endpoints, .rules' >> vcnresolvers-short.log
 #cat vcnresolvers.log | jq '.[] | ."display-name", ."id", ."endpoints"[]."forwarding-address", ."endpoints"[]."listening-address"'
+#cat vcnresolvers.log | jq '.[] | ."display-name", ."id", ."endpoints"[]."forwarding-address", ."endpoints"[]."listening-address", ."rules"[]."destination-addresses"'
 
