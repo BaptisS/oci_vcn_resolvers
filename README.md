@@ -16,7 +16,6 @@ for vcn in $vcnlistcur; do oci network vcn-dns-resolver-association get --vcn-id
 vcnresolverslistcur=$(cat vcnresolverslist.log)
 for resolver in $vcnresolverslistcur; do oci dns resolver get --resolver-id $resolver >> vcnresolvers.log ; done
 
-cat vcnresolvers.log | jq '.[] | ."display-name", .id, .endpoints, .rules' >> vcnresolvers-short.log
-#cat vcnresolvers.log | jq '.[] | ."display-name", ."id", ."endpoints"[]."forwarding-address", ."endpoints"[]."listening-address"'
-#cat vcnresolvers.log | jq '.[] | ."display-name", ."id", ."endpoints"[]."forwarding-address", ."endpoints"[]."listening-address", ."rules"[]."destination-addresses"'
-
+echo "Resolver Name, ocid, ListenerIP, ForwarderIP, RulesTargetIP(s)" > vcnresolver-sh.log
+cat vcnresolvers.log | jq -r '.[] | [."display-name", ."id", ."endpoints"[]."listening-address", ."endpoints"[]."forwarding-address", ."rules"[]."destination-addresses"[] ]  | @csv ' >> vcnresolver-sh.log
+cat vcnresolver-sh.log
