@@ -5,7 +5,7 @@
 #!/bin/sh
 rm -f vcnresolvers_allregions.log
 rm -f collect_vcnresolvers.sh
-wget https://raw.githubusercontent.com/BaptisS/oci_vcn-resolvers/main/collect_vcnresolvers.sh
+wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/collect_vcnresolvers.sh
 chmod +x collect_vcnresolvers.sh
 
 regionslist=$(oci iam region list)
