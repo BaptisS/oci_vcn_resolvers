@@ -13,11 +13,14 @@ for vcn in $vcnlistcur; do oci network vcn-dns-resolver-association get --vcn-id
 vcnresolverslistcur=$(cat vcnresolverslist-$region.log)
 for resolver in $vcnresolverslistcur; do oci dns resolver get --resolver-id $resolver --region $region >> vcnresolvers-$region.log ; done
 
-echo "[."freeform-tags"."lm", ."display-name", ."id", ."endpoints"[]."listening-address", ."endpoints"[]."forwarding-address", ."rules"[]."destination-addresses"[] ]" >> vcnresolver-sh-$region.log
+echo "[."freeform-tags"."lm", ."display-name", ."id", ."endpoints"[]."is-listening", ."endpoints"[]."listening-address", ."endpoints"[]."forwarding-address", ."rules"[]."destination-addresses"[], ."rules"[]."qname-cover-conditions"[] ]" >> vcnresolver-sh-$region.log
 cat vcnresolvers-$region.log | jq -r '.data | [ ."display-name", ."id", ."endpoints"[]."is-listening", ."endpoints"[]."listening-address", ."endpoints"[]."forwarding-address", ."rules"[]."destination-addresses"[], ."rules"[]."qname-cover-conditions"[] ]  | @csv ' >> vcnresolver-sh-$region.log
 cat vcnresolver-sh-$region.log >> vcnresolvers_allregions.log
+
+export dir=$(pwd)
+echo $dir/vcnresolvers_allregions.log
 
 rm -f vcnlist-$region.log
 rm -f vcnresolverslist-$region.log
 #rm -f vcnresolvers-$region.log
-rm -f vcnresolvers-sh-$region.log
+rm -f vcnresolver-sh-$region.log
