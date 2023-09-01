@@ -19,5 +19,5 @@ cat vcnresolver-sh-$region.log >> vcnresolvers_allregions.log
 
 rm -f vcnlist-$region.log
 rm -f vcnresolverslist-$region.log
-rm -f vcnresolvers-$region.log
+#rm -f vcnresolvers-$region.log
 rm -f vcnresolvers-sh-$region.log
