@@ -6,7 +6,7 @@ export tenancyname=$(oci iam compartment get --compartment-id $OCI_TENANCY | jq 
 rm -f vcnresolverslist-$region-$tenancyname.log
 rm -f vcnresolvers-$region-$tenancyname.log
 rm -f vcnresolver-sh-$region-$tenancyname.csv
-rm -f vcnresolvers_allregions_$tenancyname.csv
+
 
 oci search resource structured-search --query-text "query dnsresolver resources" --region $region >> vcnresolverslist-$region-$tenancyname.log
 vcnresolverslistcur=$(cat vcnresolverslist-$region-$tenancyname.log | jq .data |  jq .items | jq -r '.[] | ."identifier"')
