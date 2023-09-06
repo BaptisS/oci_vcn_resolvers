@@ -17,8 +17,5 @@ echo "[."display-name", ."id", ."endpoints"[]."is-listening", ."endpoints"[]."is
 cat vcnresolvers-$region-$tenancyname.log | jq -r '.data | [ ."display-name", ."id", ."endpoints"[]."is-listening", ."endpoints"[]."is-forwarding", ."endpoints"[]."listening-address", ."endpoints"[]."forwarding-address", ."rules"[]."destination-addresses"[], ."rules"[]."qname-cover-conditions"[] ]  | @csv ' >> vcnresolver-sh-$region-$tenancyname.csv
 cat vcnresolver-sh-$region-$tenancyname.csv >> vcnresolvers_allregions_$tenancyname.csv
 
-export dir=$(pwd)
-echo $dir/vcnresolvers_allregions_$tenancyname.csv
-
 rm -f vcnresolverslist-$region-$tenancyname.log
 rm -f vcnresolver-sh-$region-$tenancyname.csv
