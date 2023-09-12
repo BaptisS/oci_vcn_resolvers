@@ -11,7 +11,7 @@ rm -f updatedpviews-$region.logfile
 
 echo Looking for DNS views across compartments in $region
 complistcur=$(cat complistid.file)
-for compocid in $complistcur; do echo Enumerating DNS Private Views in $compocid && oci dns view list --compartment-id $compocid --region $region --all --scope PRIVATE --query 'data[?("is-protected")]' >> viewlistfull-$region.log ; done
+for compocid in $complistcur; do echo Enumerating DNS Private Views in $region $compocid && oci dns view list --compartment-id $compocid --region $region --all --scope PRIVATE --query 'data[?("is-protected")]' >> viewlistfull-$region.log ; done
 
 rm -f viewlist.log
 rm -f viewid-f.log
