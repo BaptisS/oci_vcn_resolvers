@@ -3,7 +3,7 @@ export region=$1
 export resolverid01=$2
 export resolverid02=$3
 export resolverid03=$4
-export resolverid04=$5
+#export resolverid04=$5
 
 rm -f resolverupdate-$region.log
 rm -f viewlistfull-$region.log
@@ -54,14 +54,14 @@ cat viewlistfull-$region.log | jq -r '.[] | ."id"' > updatedviews.log
 oci dns resolver get --region $region --resolver-id $resolverid01 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
 oci dns resolver get --region $region --resolver-id $resolverid02 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
 oci dns resolver get --region $region --resolver-id $resolverid03 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
-oci dns resolver get --region $region --resolver-id $resolverid04 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+#oci dns resolver get --region $region --resolver-id $resolverid04 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
 cat updatedviews.log | sort | /usr/bin/uniq > updatedviews_u.log
 split -l 49 --numeric-suffixes updatedviews_u.log viewidlistfull-$region.log
 
 export viewlist01=$(cat viewidlistfull-$region.log00)
 export viewlist02=$(cat viewidlistfull-$region.log01)
 export viewlist03=$(cat viewidlistfull-$region.log02)
-export viewlist04=$(cat viewidlistfull-$region.log03)
+#export viewlist04=$(cat viewidlistfull-$region.log03)
 
 #--
 export viewidlist=$viewlist01
@@ -120,22 +120,22 @@ rm -f viewlist.log
 rm -f viewid-f.log
 #--
 #--
-export viewidlist=$viewlist04
-export resolverid=$resolverid04
-echo "[" > viewlist.log
-for viewid in $viewidlist; do echo {'"'viewId'"':'"'$viewid'"'}, >> viewlist.log ; done
-echo "]" >> viewlist.log
-echo $(cat viewlist.log) > viewid-f.log
-sed -i 's/ //g' viewid-f.log
-sed -i 's/'},]'/'}]'/g' viewid-f.log
-export pvviewidlist=$(cat viewid-f.log)
-echo $pvviewidlist
-echo Updating resolver $region
-rm -f updatedpviews-$region.logfile
+#export viewidlist=$viewlist04
+#export resolverid=$resolverid04
+#echo "[" > viewlist.log
+#for viewid in $viewidlist; do echo {'"'viewId'"':'"'$viewid'"'}, >> viewlist.log ; done
+#echo "]" >> viewlist.log
+#echo $(cat viewlist.log) > viewid-f.log
+#sed -i 's/ //g' viewid-f.log
+#sed -i 's/'},]'/'}]'/g' viewid-f.log
+#export pvviewidlist=$(cat viewid-f.log)
+#echo $pvviewidlist
+#echo Updating resolver $region
+#rm -f updatedpviews-$region.logfile
 ##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
 ##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
-rm -f viewlist.log
-rm -f viewid-f.log
+#rm -f viewlist.log
+#rm -f viewid-f.log
 #--
 #---------------
 ;fi
