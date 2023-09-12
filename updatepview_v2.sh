@@ -141,6 +141,8 @@ rm -f viewid-f.log
 #---------------
 fi
 
+zip updatepview-$region.zip *.log*
+rm -f *.log*
 dir=$(pwd)
-echo $dir/viewlistfull-$region.log
-echo $dir/updatedpviews-$region.logfile
+echo $dir/updatepview-$region.zip
+
