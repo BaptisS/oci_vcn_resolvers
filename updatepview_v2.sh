@@ -30,8 +30,8 @@ export pvviewidlist=$(cat viewid-f.log)
 echo $pvviewidlist
 echo Updating resolver $region
 rm -f updatedpviews-$region.logfile
-oci dns resolver update --region $region --resolver-id $resolverid01 --attached-views $pvviewidlist --force > updatedpviews-$region.logfile
-cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
+##oci dns resolver update --region $region --resolver-id $resolverid01 --attached-views $pvviewidlist --force > updatedpviews-$region.logfile
+##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
 #---------------
@@ -59,8 +59,8 @@ export pvviewidlist=$(cat viewid-f.log)
 echo $pvviewidlist
 echo Updating resolver $region
 rm -f updatedpviews-$region.logfile
-oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force > updatedpviews-$region.logfile
-cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
+##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force > updatedpviews-$region.logfile
+##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
 #--
@@ -77,8 +77,8 @@ export pvviewidlist=$(cat viewid-f.log)
 echo $pvviewidlist
 echo Updating resolver $region
 rm -f updatedpviews-$region.logfile
-oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
-cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
+##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
+##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
 #--
@@ -95,8 +95,8 @@ export pvviewidlist=$(cat viewid-f.log)
 echo $pvviewidlist
 echo Updating resolver $region
 rm -f updatedpviews-$region.logfile
-oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
-cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
+##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
+##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
 #--
@@ -113,8 +113,8 @@ export pvviewidlist=$(cat viewid-f.log)
 echo $pvviewidlist
 echo Updating resolver $region
 rm -f updatedpviews-$region.logfile
-oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
-cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
+##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
+##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
 #--
