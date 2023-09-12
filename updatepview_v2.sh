@@ -19,7 +19,11 @@ rm -f viewid-f.log
 viewidnumber=$(cat viewlistfull-$region.log | jq -r '.[] | ."id"'| wc -l)
 if [ $viewidnumber -le 49 ]; then  
 #---------------
-viewidlist=$(cat viewlistfull-$region.log | jq -r '.[] | ."id"')
+rm -f updatedviews.log
+cat viewlistfull-$region.log | jq -r '.[] | ."id"' > updatedviews.log
+oci dns resolver get --region $region --resolver-id $resolverid01 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+cat updatedviews.log | sort | /usr/bin/uniq > updatedviews_u.log
+viewidlist=$(cat updatedviews_u.log)
 echo "[" > viewlist.log
 for viewid in $viewidlist; do echo {'"'viewId'"':'"'$viewid'"'}, >> viewlist.log ; done
 echo "]" >> viewlist.log
@@ -34,13 +38,26 @@ rm -f updatedpviews-$region.logfile
 ##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
+rm -f updatedviews.log
+rm -f updatedviews_u.log
 #---------------
 ;fi
 
 if [ $viewidnumber -ge 50 ]; then  
 #---------------
 cat viewlistfull-$region.log | jq -r '.[] | ."id"' > viewidlistfull-$region.log
-split -l 49 --numeric-suffixes viewidlistfull-$region.log viewidlistfull-$region.log
+
+
+
+rm -f updatedviews.log
+cat viewlistfull-$region.log | jq -r '.[] | ."id"' > updatedviews.log
+oci dns resolver get --region $region --resolver-id $resolverid01 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+oci dns resolver get --region $region --resolver-id $resolverid02 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+oci dns resolver get --region $region --resolver-id $resolverid03 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+oci dns resolver get --region $region --resolver-id $resolverid04 | jq -r '.data."attached-views"[] | ."view-id"' >> updatedviews.log
+cat updatedviews.log | sort | /usr/bin/uniq > updatedviews_u.log
+split -l 49 --numeric-suffixes updatedviews_u.log viewidlistfull-$region.log
+
 export viewlist01=$(cat viewidlistfull-$region.log00)
 export viewlist02=$(cat viewidlistfull-$region.log01)
 export viewlist03=$(cat viewidlistfull-$region.log02)
@@ -63,6 +80,8 @@ rm -f updatedpviews-$region.logfile
 ##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
+rm -f updatedviews.log
+rm -f updatedviews_u.log
 #--
 #--
 export viewidlist=$viewlist02
