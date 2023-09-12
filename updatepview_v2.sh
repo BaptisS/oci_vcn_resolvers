@@ -139,7 +139,7 @@ rm -f viewid-f.log
 #rm -f viewid-f.log
 #--
 #---------------
-;fi
+fi
 
 dir=$(pwd)
 echo $dir/viewlistfull-$region.log
