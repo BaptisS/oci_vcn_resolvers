@@ -3,7 +3,6 @@ export region=$1
 export resolverid01=$2
 export resolverid02=$3
 export resolverid03=$4
-#export resolverid04=$5
 
 rm -f resolverupdate-$region.log
 rm -f viewlistfull-$region.bak
@@ -18,6 +17,7 @@ rm -f viewlist.log
 rm -f viewid-f.log
 
 viewidnumber=$(cat viewlistfull-$region.log | jq -r '.[] | ."id"'| wc -l)
+#---------------
 if [ $viewidnumber -le 49 ]; then  
 #---------------
 rm -f updatedviews.log
@@ -42,13 +42,9 @@ rm -f viewid-f.log
 rm -f updatedviews.log
 rm -f updatedviews_u.log
 #---------------
-
-
 elif [ $viewidnumber -ge 50 ]; then  
 #---------------
 cat viewlistfull-$region.log | jq -r '.[] | ."id"' > viewidlistfull-$region.log
-
-
 
 rm -f updatedviews.log
 cat viewlistfull-$region.log | jq -r '.[] | ."id"' > updatedviews.log
@@ -84,7 +80,6 @@ rm -f viewid-f.log
 rm -f updatedviews.log
 rm -f updatedviews_u.log
 #--
-#--
 export viewidlist=$viewlist02
 export resolverid=$resolverid02
 echo "[" > viewlist.log
@@ -102,7 +97,6 @@ rm -f updatedpviews-$region.logfile
 rm -f viewlist.log
 rm -f viewid-f.log
 #--
-#--
 export viewidlist=$viewlist03
 export resolverid=$resolverid03
 echo "[" > viewlist.log
@@ -119,25 +113,6 @@ rm -f updatedpviews-$region.logfile
 ##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
 rm -f viewlist.log
 rm -f viewid-f.log
-#--
-#--
-#export viewidlist=$viewlist04
-#export resolverid=$resolverid04
-#echo "[" > viewlist.log
-#for viewid in $viewidlist; do echo {'"'viewId'"':'"'$viewid'"'}, >> viewlist.log ; done
-#echo "]" >> viewlist.log
-#echo $(cat viewlist.log) > viewid-f.log
-#sed -i 's/ //g' viewid-f.log
-#sed -i 's/'},]'/'}]'/g' viewid-f.log
-#export pvviewidlist=$(cat viewid-f.log)
-#echo $pvviewidlist
-#echo Updating resolver $region
-#rm -f updatedpviews-$region.logfile
-##oci dns resolver update --region $region --resolver-id $resolverid --attached-views $pvviewidlist --force >> updatedpviews-$region.logfile
-##cat updatedpviews-$region.logfile | jq -r '.data | ."attached-views"'
-#rm -f viewlist.log
-#rm -f viewid-f.log
-#--
 #---------------
 fi
 
