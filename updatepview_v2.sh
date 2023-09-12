@@ -6,7 +6,8 @@ export resolverid03=$4
 #export resolverid04=$5
 
 rm -f resolverupdate-$region.log
-rm -f viewlistfull-$region.log
+rm -f viewlistfull-$region.bak
+mv viewlistfull-$region.log viewlistfull-$region.bak
 rm -f updatedpviews-$region.logfile
 
 echo Looking for DNS views across compartments in $region
