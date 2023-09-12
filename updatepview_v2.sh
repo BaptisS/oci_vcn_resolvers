@@ -41,9 +41,9 @@ rm -f viewid-f.log
 rm -f updatedviews.log
 rm -f updatedviews_u.log
 #---------------
-;fi
 
-if [ $viewidnumber -ge 50 ]; then  
+
+elif [ $viewidnumber -ge 50 ]; then  
 #---------------
 cat viewlistfull-$region.log | jq -r '.[] | ."id"' > viewidlistfull-$region.log
 
