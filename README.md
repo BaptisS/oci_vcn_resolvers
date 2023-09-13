@@ -63,6 +63,9 @@ cd ..
 rm -f files.list
 
 #----
+rm -f rest_vcnresolvers.sh
+wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/rest_vcnresolvers.sh
+chmod +x rest_vcnresolvers.sh
 
 ls *.logfile > resolversfiles.list
 sed -i 's/.logfile//g' resolversfiles.list
