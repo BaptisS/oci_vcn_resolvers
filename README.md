@@ -26,7 +26,7 @@ backup vcnresolvers :
 ````
 #!/bin/sh
 export tenancyname=$(oci iam compartment get --compartment-id $OCI_TENANCY | jq -r '.data | ."name"')
-
+rm -f back_vcnresolvers.sh
 wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/back_vcnresolvers.sh
 chmod +x back_vcnresolvers.sh
 
