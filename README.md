@@ -34,7 +34,7 @@ regionslist=$(oci iam region list)
 regions=$(echo $regionslist | jq -r '.data[] | ."name"')
 for region in $regions; do echo "Collecting DNS Private Resolvers Details in" $region && ./back_vcnresolvers.sh $region $tenancyname ; done
 
-rm -f collect_vcnresolvers.sh
+rm -f back_vcnresolvers.sh
 export date=$(date --iso-8601)
 zip $tenancyname.vcnresolvers.$date.zip *.zip
 ll
