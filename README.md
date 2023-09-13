@@ -38,6 +38,7 @@ rm -f back_vcnresolvers.sh
 export date=$(date --iso-8601)
 zip $tenancyname.vcnresolvers.$date.zip *backup.zip
 rm -f *backup.zip
+rm -f resolverslist-*.log
 ll
 
 
