@@ -35,7 +35,8 @@ regions=$(echo $regionslist | jq -r '.data[] | ."name"')
 for region in $regions; do echo "Collecting DNS Private Resolvers Details in" $region && ./back_vcnresolvers.sh $region $tenancyname ; done
 
 rm -f collect_vcnresolvers.sh
-zip $tenancyname_vcnresolvers.zip *.zip
+zip $tenancyname.vcnresolvers.zip *.zip
 ll
+
 
 ````
