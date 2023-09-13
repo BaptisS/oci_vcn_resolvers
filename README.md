@@ -43,3 +43,32 @@ export dir=$(pwd)
 echo $dir/$tenancyname.vcnresolvers.$date.zip
 
 ````
+Restore vcnresolvers : 
+````
+#!/bin/sh
+
+export backfile='vcnresolvers.2023-09-13.zip' ##--- must be updated
+export date=$(date --iso-8601)
+mkdir $date-vcnresolvers
+mkdir $date-vcnresolvers/bak
+cp $backfile $date-vcnresolvers/
+cd $date-vcnresolvers/
+unzip $backfile 
+mv $backfile bak/
+ls *.zip > files.list 
+sed -i 's/.zip//g' files.list
+dirs=$(cat files.list)
+for dir in $dirs; do mkdir $dir && mkdir $dir/bak && mv $dir.zip $dir/ && cd $dir && unzip $dir.zip && mv $dir.zip bak/ && cd .. ; done
+cd ..
+rm -f files.list
+
+#----
+
+ls *.logfile > resolversfiles.list
+sed -i 's/.logfile//g' resolversfiles.list
+reslist=$(cat resolversfiles.list)
+for resolver in $reslist; do echo Restore VCN Resolver : $resolver && ./rest_vcnresolver.sh $resolver $region
+
+
+
+````
