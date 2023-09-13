@@ -36,7 +36,8 @@ for region in $regions; do echo "Collecting DNS Private Resolvers Details in" $r
 
 rm -f back_vcnresolvers.sh
 export date=$(date --iso-8601)
-zip $tenancyname.vcnresolvers.$date.zip *.zip
+zip $tenancyname.vcnresolvers.$date.zip *backup.zip
+rm -f *backup.zip
 ll
 
 
