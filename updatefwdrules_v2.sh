@@ -6,7 +6,7 @@ export fw_domains=$4
 export fw_target=$5
 export res_excl2=$6
 export res_excl3=$7
-
+export res_excl4=$8
 
 rm -f $res_ocid.logfile
 if [[ "$res_ocid" != "$res_excl" ] && [ "$res_ocid" != "$res_excl2" ] && [ "$res_ocid" != "$res_excl3" ] && [ "$res_ocid" != "$res_excl4" ]]; then
