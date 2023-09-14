@@ -61,7 +61,7 @@ mv $pathname/$backfile $pathname/bak/
 ls $pathname/*.zip > $pathname/files.list 
 sed -i 's/.zip//g' $pathname/files.list
 regfiles=$(cat $pathname/files.list)
-for regfile in $regfiles; do prep-rest-vcnresolver.sh $regfile $pathname; done
+for regfile in $regfiles; do ./prep-rest-vcnresolver.sh $regfile $pathname; done
 rm -f files.list
 #--------
 
