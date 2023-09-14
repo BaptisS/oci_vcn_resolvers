@@ -50,6 +50,7 @@ Restore vcnresolvers :
 export backfile='vcnresolvers.2023-09-13.zip' ##--- must be updated
 export date=$(date --iso-8601)
 export pathname=vcnresolvers-restore-$date
+mkdir $pathname
 rm -f prep-rest-vcnresolver.sh
 wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/prep-rest-vcnresolver.sh
 chmod +x prep-rest-vcnresolver.sh
