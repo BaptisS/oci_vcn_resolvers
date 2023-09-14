@@ -5,10 +5,9 @@ export pathname=$2
 mkdir $pathname/$regfile
 mkdir $pathname/$regfile/bak
 mv $pathname/$regfile.zip $pathname/$regfile/
-unzip $pathname/$regfile/$regfile.zip -d unzip $pathname/$regfile/
-mv $pathname/$regfile/$regfile.zip $pathname/$regfile/bak/
-
 cd $pathname/$regfile/
+unzip $regfile.zip
+mv $regfile.zip bak/
 
 rm -f rest_vcnresolver.sh
 wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/rest_vcnresolver.sh
