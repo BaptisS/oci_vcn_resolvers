@@ -49,28 +49,20 @@ Restore vcnresolvers :
 
 export backfile='vcnresolvers.2023-09-13.zip' ##--- must be updated
 export date=$(date --iso-8601)
-mkdir $date-vcnresolvers
-mkdir $date-vcnresolvers/bak
-cp $backfile $date-vcnresolvers/
-cd $date-vcnresolvers/
-unzip $backfile 
-mv $backfile bak/
-ls *.zip > files.list 
-sed -i 's/.zip//g' files.list
-dirs=$(cat files.list)
-for dir in $dirs; do mkdir $dir && mkdir $dir/bak && mv $dir.zip $dir/ && cd $dir && unzip $dir.zip && mv $dir.zip bak/ && cd .. ; done
-cd ..
+export pathname=vcnresolvers-restore-$date
+rm -f prep-rest-vcnresolver.sh
+wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/prep-rest-vcnresolver.sh
+chmod +x prep-rest-vcnresolver.sh
+mkdir $pathname/bak
+cp $backfile $pathname/
+unzip $pathname/$backfile -d $pathname/
+mv $pathname/$backfile $pathname/bak/
+ls $pathname/*.zip > $pathname/files.list 
+sed -i 's/.zip//g' $pathname/files.list
+regions=$(cat $pathname/files.list)
+for region in $regions; do prep-rest-vcnresolver.sh $region $pathname; done
 rm -f files.list
-
-#----
-rm -f rest_vcnresolver.sh
-wget https://raw.githubusercontent.com/BaptisS/oci_vcn_resolvers/main/rest_vcnresolver.sh
-chmod +x rest_vcnresolver.sh
-
-ls *.logfile > resolversfiles.list
-sed -i 's/.logfile//g' resolversfiles.list
-reslist=$(cat resolversfiles.list)
-for resolver in $reslist; do echo Restore VCN Resolver : $resolver && ./rest_vcnresolver.sh $resolver $region
+#--------
 
 
 
