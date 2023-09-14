@@ -60,8 +60,8 @@ unzip $pathname/$backfile -d $pathname/
 mv $pathname/$backfile $pathname/bak/
 ls $pathname/*.zip > $pathname/files.list 
 sed -i 's/.zip//g' $pathname/files.list
-regions=$(cat $pathname/files.list)
-for region in $regions; do prep-rest-vcnresolver.sh $region $pathname; done
+regfiles=$(cat $pathname/files.list)
+for regfile in $regfiles; do prep-rest-vcnresolver.sh $regfile $pathname; done
 rm -f files.list
 #--------
 
