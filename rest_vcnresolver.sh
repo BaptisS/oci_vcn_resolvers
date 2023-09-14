@@ -12,4 +12,4 @@ sed -i 's/qname-cover-conditions/qnameCoverConditions/g' $filename.rules.file
 sed -i 's/source-endpoint-name/sourceEndpointName/g' $filename.rules.file
 sed -i 's/source-endpoint-name/sourceEndpointName/g' $filename.rules.file
 
-oci dns resolver update --region $region --resolver-id $resocid --rules file://$filename.rules.file
+oci dns resolver update --region $region --resolver-id $resocid --rules file://$filename.rules.file --force >> $region-vcnresolverupdate.log
